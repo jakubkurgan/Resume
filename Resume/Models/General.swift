@@ -13,5 +13,5 @@ struct General: Codable {
     let lastName: String
     let currentPosition: String
     let description: String
-    let photoURL: String?
+    let photoUrl: String?
 }
