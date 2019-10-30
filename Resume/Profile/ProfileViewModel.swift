@@ -7,30 +7,13 @@
 //
 
 import Combine
+import SwiftUI
 import Foundation
 
-class ProfileViewModel: ObservableObject {
+class ProfileViewModel: ObservableObject {    
+    @Published  var profile: Profile?
     
-    let didChange = PassthroughSubject<ProfileViewModel,Never>()
-    
-    init() {
-        fetchProfile()
-    }
-    
-    var imageData: Data? {
-        didSet {
-            didChange.send(self)
-        }
-    }
-    
-    var profile: Profile? {
-        didSet {
-            didChange.send(self)
-            fetchImage()
-        }
-    }
-    
-    private func fetchProfile() {
+    func fetchProfile() {
         ProfileService.getProfile { [weak self] (result) in
             switch result {
             case .failure(_): break
@@ -39,17 +22,5 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
-    
-    private func fetchImage() {
-        guard let imageUrl = profile?.general.photoUrl else {
-            return
-        }
-        ProfileService.getImage(imageUrl: imageUrl) { [weak self] (result) in
-           switch result {
-            case .failure(_): break
-            case .success(let data):
-                self?.imageData = data
-            }
-        }
-    }
 }
+

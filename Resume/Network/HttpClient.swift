@@ -32,16 +32,18 @@ struct HttpClient {
     func request(path: URL, _ completion: @escaping (Result<Data, Error>) -> Void) {
         
         let task = session.dataTask(with: path) { (data, response, error) in
-            
-            if let error = error {
-                completion(.failure(error))
-                return
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                guard let data = data else {
+                    completion(.failure(HttpClientError.noData))
+                    return
+                }
+                completion(.success(data))
+                
             }
-            guard let data = data else {
-                completion(.failure(HttpClientError.noData))
-                return
-            }
-            completion(.success(data))
         }
         task.resume()
     }

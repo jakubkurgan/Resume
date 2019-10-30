@@ -14,4 +14,16 @@ struct General: Codable {
     let currentPosition: String
     let description: String
     let photoUrl: String?
+    
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+    
+    var imageData: Data? {
+        if let url = URL(string: photoUrl ?? "") {
+            return try? Data(contentsOf: url)
+        } else {
+            return nil
+        }
+    }
 }
