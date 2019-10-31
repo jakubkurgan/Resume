@@ -12,65 +12,40 @@ struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel = ProfileViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HeaderView(imageData: viewModel.profile?.general.imageData, backgroufColor: .gray)
-
-            VStack(alignment: .leading) {
-                Text(viewModel.profile?.general.fullName ?? "")
-                    .font(.title)
-                Text(viewModel.profile?.general.currentPosition ?? "")
-                    .padding(.bottom)
-                    .font(.headline)
-                Text(viewModel.profile?.general.description ?? "")
-                    .font(.subheadline)
+        List() {
+            MainHeaderSectionView(imageData: viewModel.profile?.general.imageData,
+                                  fullName: viewModel.profile?.general.fullName,
+                                  currentPosition: viewModel.profile?.general.currentPosition,
+                                  description: viewModel.profile?.general.description)
+            
+            Section(header: Text("experience")) {
+                ForEach(viewModel.profile?.experiences ?? [], id: \.self) { exp in
+                    TimeMainEntryView(title: exp.name, startDate: exp.startDate, endDate: exp.endDate, entries: exp.roles)
+                }
             }
-            .padding()
-            Spacer()
-        }.onAppear(perform: {
-            self.viewModel.fetchProfile()
-        })
+            
+            Section(header: Text("education")) {
+                ForEach(viewModel.profile?.educations ?? [], id: \.self) { exp in
+                    TimeMainEntryView(title: exp.name, startDate: exp.startDate, endDate: exp.endDate, entries: exp.subjects)
+                }
+            }
+            
+            Section(header: Text("skills")) {
+                ForEach(viewModel.profile?.skills ?? [], id: \.self) { skill in
+                    Text(skill.name)
+                        .font(.subheadline)
+                }
+            }
+        }.blur(radius: viewModel.profile != nil ? 0 : 5)
+        .edgesIgnoringSafeArea(.top)
+            .alert(isPresented: $viewModel.displayAlert) {
+                Alert(title: Text("alertTitle"), message: Text(viewModel.error?.localizedDescription ?? ""), dismissButton: .default(Text("alertRetry")) {
+                    self.viewModel.fetchProfile()
+                })
+            }
+            .onAppear(perform: {
+                UITableView.appearance().backgroundColor = .gray
+                self.viewModel.fetchProfile()
+            })
     }
 }
-
-
-struct HeaderView: View {
-    
-    var imageData: Data?
-    var backgroufColor: UIColor
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Color(backgroufColor)
-                .edgesIgnoringSafeArea(.top)
-                .frame(height: 150)
-
-            CircleImage(imageData: imageData)
-            .frame(width: 150, height: 150)
-                .offset(x: 20, y: -100)
-                .padding(.bottom, -120)
-        }
-    }
-}
-
-struct CircleImage: View {
-    var imageData: Data?
-    
-    var image: UIImage {
-        if let imageData = imageData, let image = UIImage(data: imageData) {
-            return  image
-        } else {
-            return UIImage()
-        }
-    }
-    
-    var body: some View {
-        Image(uiImage: image)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .clipShape(Circle())
-        .overlay(
-        Circle().stroke(Color.white, lineWidth: 4))
-        .shadow(radius: 10)
-    }
-}
-

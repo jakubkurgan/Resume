@@ -10,7 +10,7 @@ import Foundation
 
 struct ProfileService {
     static func getProfile(completion: @escaping (Result<Profile, Error>) -> Void) {
-        guard let url = URL(string: "https://gist.githubusercontent.com/jakubkurgan/c93e13915d1d620447dc6c380c504a46/raw/36ffa211437a1c37563af3856e8dba9d63fcf5df/fake-resume") else {
+        guard let url = URL(string: "https://gist.githubusercontent.com/jakubkurgan/c93e13915d1d620447dc6c380c504a46/raw/148b684fbc32b79568f1a61fb65a57415f9e2879/fake-resume") else {
             return
         }
         HttpClient().request(path: url) { result in

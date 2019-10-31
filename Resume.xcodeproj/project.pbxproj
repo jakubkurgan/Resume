@@ -25,6 +25,15 @@
 		906FE9C82368DAD400EE886C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE9C72368DAD400EE886C /* ProfileViewModel.swift */; };
 		906FE9CA2368DC3F00EE886C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE9C92368DC3F00EE886C /* ProfileView.swift */; };
 		906FE9CC2368E65800EE886C /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FE9CB2368E65700EE886C /* DateFormatter+Extension.swift */; };
+		90835696236B7DFF006D7B8C /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90835695236B7DFF006D7B8C /* CircleImage.swift */; };
+		90835698236B7F2B006D7B8C /* CircleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90835697236B7F2B006D7B8C /* CircleModifier.swift */; };
+		9083569B236B7FDE006D7B8C /* ImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9083569A236B7FDE006D7B8C /* ImageHeaderView.swift */; };
+		9083569D236B804D006D7B8C /* PersonalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9083569C236B804D006D7B8C /* PersonalDetailsView.swift */; };
+		9083569F236B80B2006D7B8C /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9083569E236B80B2006D7B8C /* MainHeaderView.swift */; };
+		908356A2236B826D006D7B8C /* TimeMainEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908356A1236B826D006D7B8C /* TimeMainEntryView.swift */; };
+		908356A4236B8369006D7B8C /* TimeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908356A3236B8369006D7B8C /* TimeEntryView.swift */; };
+		908356A7236B8617006D7B8C /* MainHeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908356A6236B8617006D7B8C /* MainHeaderSectionView.swift */; };
+		90D6C204236B734A00D7C396 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6C203236B734A00D7C396 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +57,15 @@
 		906FE9C72368DAD400EE886C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		906FE9C92368DC3F00EE886C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		906FE9CB2368E65700EE886C /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		90835695236B7DFF006D7B8C /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		90835697236B7F2B006D7B8C /* CircleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleModifier.swift; sourceTree = "<group>"; };
+		9083569A236B7FDE006D7B8C /* ImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHeaderView.swift; sourceTree = "<group>"; };
+		9083569C236B804D006D7B8C /* PersonalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsView.swift; sourceTree = "<group>"; };
+		9083569E236B80B2006D7B8C /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
+		908356A1236B826D006D7B8C /* TimeMainEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMainEntryView.swift; sourceTree = "<group>"; };
+		908356A3236B8369006D7B8C /* TimeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryView.swift; sourceTree = "<group>"; };
+		908356A6236B8617006D7B8C /* MainHeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderSectionView.swift; sourceTree = "<group>"; };
+		90D6C203236B734A00D7C396 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +98,7 @@
 		903972DC2368D1BB00512355 /* Resume */ = {
 			isa = PBXGroup;
 			children = (
+				90835693236B7DDC006D7B8C /* Views */,
 				906FE9C62368DABD00EE886C /* Profile */,
 				906FE9B62368D6B400EE886C /* Models */,
 				906FE9B12368D5B100EE886C /* Extensions */,
@@ -117,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				906FE9CB2368E65700EE886C /* DateFormatter+Extension.swift */,
+				90D6C203236B734A00D7C396 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +161,45 @@
 				906FE9C92368DC3F00EE886C /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		90835693236B7DDC006D7B8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				908356A0236B8258006D7B8C /* TimeEntry */,
+				90835699236B7FC5006D7B8C /* Header */,
+				90835694236B7DE1006D7B8C /* CircleImage */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		90835694236B7DE1006D7B8C /* CircleImage */ = {
+			isa = PBXGroup;
+			children = (
+				90835695236B7DFF006D7B8C /* CircleImage.swift */,
+				90835697236B7F2B006D7B8C /* CircleModifier.swift */,
+			);
+			path = CircleImage;
+			sourceTree = "<group>";
+		};
+		90835699236B7FC5006D7B8C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				9083569A236B7FDE006D7B8C /* ImageHeaderView.swift */,
+				9083569C236B804D006D7B8C /* PersonalDetailsView.swift */,
+				9083569E236B80B2006D7B8C /* MainHeaderView.swift */,
+				908356A6236B8617006D7B8C /* MainHeaderSectionView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		908356A0236B8258006D7B8C /* TimeEntry */ = {
+			isa = PBXGroup;
+			children = (
+				908356A1236B826D006D7B8C /* TimeMainEntryView.swift */,
+				908356A3236B8369006D7B8C /* TimeEntryView.swift */,
+			);
+			path = TimeEntry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,12 +274,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9083569F236B80B2006D7B8C /* MainHeaderView.swift in Sources */,
 				903972DE2368D1BB00512355 /* AppDelegate.swift in Sources */,
+				90835696236B7DFF006D7B8C /* CircleImage.swift in Sources */,
 				906FE9C32368D87800EE886C /* Skill.swift in Sources */,
+				908356A4236B8369006D7B8C /* TimeEntryView.swift in Sources */,
 				906FE9BF2368D80F00EE886C /* TimeEntry.swift in Sources */,
 				906FE9C12368D83E00EE886C /* Education.swift in Sources */,
+				90835698236B7F2B006D7B8C /* CircleModifier.swift in Sources */,
 				906FE9B82368D6C800EE886C /* Profile.swift in Sources */,
+				90D6C204236B734A00D7C396 /* Date+Extension.swift in Sources */,
+				908356A7236B8617006D7B8C /* MainHeaderSectionView.swift in Sources */,
 				903972E02368D1BB00512355 /* SceneDelegate.swift in Sources */,
+				9083569D236B804D006D7B8C /* PersonalDetailsView.swift in Sources */,
+				9083569B236B7FDE006D7B8C /* ImageHeaderView.swift in Sources */,
+				908356A2236B826D006D7B8C /* TimeMainEntryView.swift in Sources */,
 				906FE9C82368DAD400EE886C /* ProfileViewModel.swift in Sources */,
 				906FE9CA2368DC3F00EE886C /* ProfileView.swift in Sources */,
 				906FE9CC2368E65800EE886C /* DateFormatter+Extension.swift in Sources */,

@@ -9,15 +9,12 @@
 import Foundation
 
 enum HttpClientError: Error {
-    case invalidURL
     case noData
 }
 
 extension HttpClientError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .invalidURL:
-            return "invalidUrlErrorMessage"
         case .noData:
             return "noDataErrorMesssage"
         }

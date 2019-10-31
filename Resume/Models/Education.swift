@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Education: Codable {
+struct Education: Codable, Hashable {
     let name: String
     let startDate: Date
     let endDate: Date?

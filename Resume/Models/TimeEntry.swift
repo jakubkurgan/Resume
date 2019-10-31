@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TimeEntry: Codable {
+struct TimeEntry: Codable, Hashable {
     let name: String
     let startDate: Date
     let endDate: Date?

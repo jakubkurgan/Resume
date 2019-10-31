@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Skill: Codable {
+struct Skill: Codable, Hashable {
     let name: String
 }

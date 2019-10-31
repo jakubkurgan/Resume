@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Experience: Codable {
+struct Experience: Codable, Hashable {
     let name: String
     let startDate: Date
     let endDate: Date?
-    let roles: [TimeEntry]?
+    let roles: [TimeEntry]
 }
