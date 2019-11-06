@@ -18,17 +18,17 @@ extension Date {
     }
     
     func getFormattedTimePeriod(to endDate: Date?) -> String {
-
+        
         let diffDateComponents = NSCalendar.current.dateComponents([.year, .month], from: self, to: endDate ?? Date())
         let (years, months) = (diffDateComponents.year ?? 0, diffDateComponents.month ?? 0)
         
         return "\(years) Years \(months) Months"
     }
     
-        func getFormattedTimePeriodAndRange(to endDate: Date?) -> String {
-
+    func getFormattedTimePeriodAndRange(to endDate: Date?) -> String {
         
-            return "\(getFormattedTimeRange(to: endDate)) · \(getFormattedTimePeriod(to: endDate))"
+        
+        return "\(getFormattedTimeRange(to: endDate)) · \(getFormattedTimePeriod(to: endDate))"
     }
     
 }

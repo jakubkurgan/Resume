@@ -10,6 +10,7 @@ import Foundation
 
 enum HttpClientError: Error {
     case noData
+    case invalidURL
 }
 
 extension HttpClientError: LocalizedError {
@@ -17,6 +18,8 @@ extension HttpClientError: LocalizedError {
         switch self {
         case .noData:
             return "noDataErrorMesssage"
+        case .invalidURL:
+            return "invalidUrlErrorMessage"
         }
     }
 }
@@ -24,16 +27,32 @@ extension HttpClientError: LocalizedError {
 struct HttpClient {
     
     private let session = URLSession.shared
-    private let baseURL = URL(string: "https://gist.githubusercontent.com/jakubkurgan/c93e13915d1d620447dc6c380c504a46/raw/008d4efa9fd9746f1981921500b72821d3b47a34/fake-resume")
+    private let baseURL = URL(string: "https://gist.githubusercontent.com/jakubkurgan/")
     
-    func request(path: URL, _ completion: @escaping (Result<Data, Error>) -> Void) {
+    func request(path: String, _ completion: @escaping (Result<Data, Error>) -> Void) {
         
-        let task = session.dataTask(with: path) { (data, response, error) in
+        guard let url = baseURL?.appendingPathComponent(path) else {
+            completion(.failure(HttpClientError.invalidURL))
+            return
+        }
+        
+        let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
                     return
                 }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(HttpClientError.noData))
+                    return
+                }
+                
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    let status = httpResponse.value(forHTTPHeaderField: "status")
+                    completion(.failure(NSError(domain: status ?? "", code: httpResponse.statusCode, userInfo: [:])))
+                    return
+                }
+                                
                 guard let data = data else {
                     completion(.failure(HttpClientError.noData))
                     return

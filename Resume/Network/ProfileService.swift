@@ -10,10 +10,8 @@ import Foundation
 
 struct ProfileService {
     static func getProfile(completion: @escaping (Result<Profile, Error>) -> Void) {
-        guard let url = URL(string: "https://gist.githubusercontent.com/jakubkurgan/c93e13915d1d620447dc6c380c504a46/raw/148b684fbc32b79568f1a61fb65a57415f9e2879/fake-resume") else {
-            return
-        }
-        HttpClient().request(path: url) { result in
+        let path = "c93e13915d1d620447dc6c380c504a46/raw/148b684fbc32b79568f1a61fb65a57415f9e2879/fake-resume"
+        HttpClient().request(path: path) { result in
             switch result {
             case .success(let data):
                 do {
@@ -23,20 +21,6 @@ struct ProfileService {
                 } catch {
                     completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    static func getImage(imageUrl: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: imageUrl) else {
-            return
-        }
-        HttpClient().request(path: url) { result in
-            switch result {
-            case .success(let data):
-                completion(.success(data))
             case .failure(let error):
                 completion(.failure(error))
             }
